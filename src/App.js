@@ -51,7 +51,7 @@ class App extends Component {
     }))
   }
 
-  showPassword = event => {
+  showPasswords = event => {
     if (event.target.checked) {
       this.setState({isShow: true})
     } else {
@@ -73,7 +73,7 @@ class App extends Component {
   render() {
     const {
       website,
-      userName,
+      username,
       password,
       latestList,
       isShow,
@@ -81,7 +81,7 @@ class App extends Component {
     } = this.state
     let {isTrue} = this.state
     const newList = latestList.filter(eachValue =>
-      eachValue.website.toUpperCase().includes(searchInput.toLowerCase()),
+      eachValue.websiteName.toLowerCase().includes(searchInput.toLowerCase()),
     )
     if (newList.length === 0) {
       isTrue = false
@@ -129,7 +129,7 @@ class App extends Component {
                 className="input-element"
                 placeholder="Enter Username"
                 onChange={this.listenUsername}
-                value={userName}
+                value={username}
               />
             </div>
             <div className="input-holder">
@@ -159,7 +159,7 @@ class App extends Component {
         <div className="sub-div2">
           <div className="first-div">
             <div className="your-password">
-              <h1 className="heading-name">Your Password</h1>
+              <h1 className="heading-name">Your Passwords</h1>
               <p className="colored-text">{newList.length}</p>
             </div>
             <div className="search-holder">
@@ -183,10 +183,10 @@ class App extends Component {
               type="checkbox"
               className="check-box"
               id="check"
-              onChange={this.showPassword}
+              onChange={this.showPasswords}
             />
             <label htmlFor="check" className="label-password">
-              Show Passwords
+              Show passwords
             </label>
           </div>
           {!isTrue && (
@@ -209,23 +209,23 @@ class App extends Component {
                   <div className="list-content">
                     <p className="website">{eachValue.websiteName}</p>
                     <p className="website">{eachValue.userName}</p>
-                    {isShow && (
+                    {!isShow && (
                       <img
-                        src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png "
+                        src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
                         className="stars-image"
                         alt="stars"
                       />
                     )}
-                    {isShow && <p className="website">{eachValue.password}</p>}
+                    {isShow && <p className="website">{eachValue.Password}</p>}
                   </div>
                   <button
                     className="del-btn"
                     type="button"
                     onClick={() => this.deleteItem(eachValue.id)}
-                    date-testid="delete"
+                    data-testid="delete"
                   >
                     <img
-                      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png "
+                      src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
                       className="del-image"
                       alt="delete"
                     />
